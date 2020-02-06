@@ -1,0 +1,20 @@
+Think about: 
+ - Output
+ - Convetions
+ - Where is data structure defined? In JS or in config file. Edited in GUI or in code
+ - Features: Input fields, relations?, image uploads?
+ - NodeJS or Rust/Go backend
+
+
+- Drop in -> Parse -> Render fields 
+
+FIELD RENDERING:
+- for field in JSON
+- field.type -> Inputfield
+- field.content -> Value
+
+1. Write JSON Parser -> Renderer
+
+if type in KNOWN_FIELDS {
+    render KNOWN_FIELDS[type]
+}

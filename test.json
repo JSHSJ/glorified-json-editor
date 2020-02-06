@@ -1,0 +1,45 @@
+{
+  "title": "Test",
+  "content": [
+    {
+      "type": "text",
+      "name": "Text label",
+      "content": {
+        "value": "TEst json"
+      }
+    },
+    {
+      "type": "number",
+      "name": "Number label",
+      "content": {
+        "value": 2
+      }
+    },
+    {
+      "name": "TOLLER repeater",
+      "type": "repeater",
+      "content": [
+        {
+          "name": "nested text",
+          "type": "text",
+          "content": {
+            "value": "nested text"
+          }
+        },
+        {
+          "name": "nested repeater",
+          "type": "repeater",
+          "content": [
+            {
+              "name": "second level nested",
+              "type": "text",
+              "content": {
+                "value": "very nested text"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
