@@ -4,9 +4,7 @@
     {
       "type": "text",
       "name": "Text label",
-      "content": {
-        "value": "TEst json"
-      }
+      "content": "TEst json"
     },
     {
       "type": "number",

@@ -1,0 +1,29 @@
+{
+  "name": "test 2",
+  "slug": "test-2",
+  "test": {
+    "__type": "tet",
+    "headline": "custom",
+    "name": "string",
+    "amount": "number"
+  },
+  "content": {
+    "__type": "content",
+    "headline": "headline",
+    "text": "longer text",
+    "num": 9,
+    "flexible": [
+      {
+        "__type": "flexHeadline",
+        "flexHeadline": "flexHeaddline",
+        "flexnum": "flexNum"
+      },
+      {
+        "__type": "flexHeadline",
+        "flexHeadline": "flexHeaddline",
+        "flexnum": "flexNum"
+      }
+    ]
+  },
+  "list": [1, 2, 3, 4, 5]
+}

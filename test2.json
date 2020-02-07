@@ -1,0 +1,19 @@
+{
+  "name": "test 2",
+  "slug": "test-2",
+  "content": {
+    "headline": "headline",
+    "text": "longer text",
+    "num": 9,
+    "flexible": [
+      {
+        "flexHeadline": "flexHeaddline",
+        "flexnum": "flexNum"
+      },
+      {
+        "flexHeadline": "flexHeaddline",
+        "flexnum": "flexNum"
+      }
+    ]
+  }
+}

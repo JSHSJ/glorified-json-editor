@@ -1,39 +1,43 @@
-import React, { useContext, FunctionComponent } from "react";
-import { JsonStore } from "../stores/jsonStore";
-import KNOWN_INPUTS from "./StandardTypes";
-import { FormEvent } from "react";
+import React, { FunctionComponent } from 'react';
+import KNOWN_INPUTS from './StandardTypes';
+import { ComponentType } from '../stores/jsonStore';
+import Repeater from './Repeater';
 
-const Renderer: FunctionComponent = () => {
-  const store = useContext(JsonStore);
-  const { state } = store;
+interface RendererProps {
+  content: ComponentType;
+}
 
-  const formToJson = (event: FormEvent) => {
-    event.preventDefault();
-
-    console.log(event);
-  };
-
+const Renderer: FunctionComponent<RendererProps> = ({ content }) => {
   return (
-    <JsonStore.Consumer>
-      {json => (
-        <div className="Renderer">
-          <h2>{json.state.parsed.title}</h2>
-          <form onSubmit={formToJson}>
-            {json.state.parsed.content.map((el, index) => {
-              if (Object.keys(KNOWN_INPUTS).indexOf(el.type) !== -1) {
-                return (
-                  <label key={el.name} className={el.type}>
-                    <span>{el.name}</span>
-                    {KNOWN_INPUTS[el.type](el.content)}
-                  </label>
-                );
-              }
-            })}
-            <input type="submit" value="Generate new JSON" />
-          </form>
-        </div>
-      )}
-    </JsonStore.Consumer>
+    <div>
+      {Object.keys(content).map((entry: string) => {
+        const value = content[entry];
+        const type = typeof value;
+        if (Array.isArray(value)) {
+          return <Repeater name={entry} content={value as [ComponentType]} />;
+        } else {
+          if (type === 'object') {
+            if (Object.keys(KNOWN_INPUTS).indexOf(value.__type) !== -1) {
+              return (
+                <label key={entry} className={value.__type}>
+                  <span>{entry}</span>
+                  {KNOWN_INPUTS[value.__type](value)}
+                </label>
+              );
+            }
+          } else {
+            if (Object.keys(KNOWN_INPUTS).indexOf(type) !== -1) {
+              return (
+                <label key={entry} className={type}>
+                  <span>{entry}</span>
+                  {KNOWN_INPUTS[type](value)}
+                </label>
+              );
+            }
+          }
+        }
+      })}
+    </div>
   );
 };
 

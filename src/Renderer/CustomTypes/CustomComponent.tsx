@@ -1,10 +1,15 @@
 import React, { FunctionComponent } from 'react';
 
-export interface NumberInputProps {
-  value: number;
-}
+type CustomInputProps = {
+  __type: string;
+  content: {
+    headline: 'string';
+    name: 'string';
+    amount: 'number';
+  };
+};
 
-const NumberInput: FunctionComponent<NumberInputProps> = ({ value }) => {
+const NumberInput: FunctionComponent<CustomInputProps> = ({ __type, content }) => {
   return <input type="number" defaultValue={value} />;
 };
 

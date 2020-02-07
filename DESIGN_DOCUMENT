@@ -18,3 +18,20 @@ FIELD RENDERING:
 if type in KNOWN_FIELDS {
     render KNOWN_FIELDS[type]
 }
+
+RENDERING RULES:
+  - check typeof
+  - render basic types (text, number, boolean)
+  - if [] -> repeater
+  - if {} -> __type = required
+
+  const customFunction(fasfas) {
+    <div>
+    HASFAFDAS
+    <input>
+  }
+
+  {
+    headline: text,
+    subheadline: text,
+  }

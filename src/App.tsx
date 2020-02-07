@@ -1,14 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
-import Parser from "./Parser/Parser";
-import Renderer from "./Renderer/Renderer";
-import "./App.css";
+import React from 'react';
+import Parser from './Parser/Parser';
+import RendererForm from './Renderer/RendererForm';
+import './App.css';
 
 const App = () => {
   return (
     <div className="App">
       <Parser></Parser>
-      <Renderer></Renderer>
+      <RendererForm></RendererForm>
     </div>
   );
 };

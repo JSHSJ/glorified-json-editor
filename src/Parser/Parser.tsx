@@ -1,6 +1,6 @@
-import React, { useContext, useRef, FormEvent, FunctionComponent } from "react";
-import { JsonStore } from "../stores/jsonStore";
-import styled from "styled-components";
+import React, { useContext, useRef, FormEvent, FunctionComponent } from 'react';
+import { JsonStore } from '../stores/jsonStore';
+import styled from 'styled-components';
 
 const Parse = styled.form`
   display: flex;
@@ -18,7 +18,7 @@ const Parse = styled.form`
 
 const Parser: FunctionComponent = () => {
   const store = useContext(JsonStore);
-  const { state, dispatch } = store;
+  const { dispatch } = store;
   const textarea = useRef<HTMLTextAreaElement>(null);
 
   const parseJson = (event: FormEvent) => {
@@ -28,7 +28,7 @@ const Parser: FunctionComponent = () => {
     }
     const json = textarea.current.value;
     const content = JSON.parse(json);
-    dispatch({ type: "update", payload: { parsed: content } });
+    dispatch({ type: 'update', payload: { parsed: content } });
   };
 
   return (

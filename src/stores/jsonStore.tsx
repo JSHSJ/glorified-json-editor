@@ -1,24 +1,14 @@
 // store.js
-import React, { createContext, useReducer, Dispatch } from "react";
+import React, { createContext, useReducer, Dispatch } from 'react';
 
-export type ContentNodeType = {
-  type: string;
-  content: any;
-  name: string;
-};
+export type ComponentType = { [key: string]: any };
 
 type StateType = {
-  parsed: {
-    title: string;
-    content: ContentNodeType[];
-  };
+  parsed: ComponentType;
 };
 
 const initialState: StateType = {
-  parsed: {
-    title: "Default",
-    content: []
-  }
+  parsed: {},
 };
 
 export interface Action {
@@ -34,7 +24,7 @@ interface ContextProps {
 function reducer(state: StateType, action: Action): StateType {
   console.log(action);
   switch (action.type) {
-    case "update":
+    case 'update':
       return { ...state, ...action.payload };
     default:
       throw new Error("Can't parse Json");
