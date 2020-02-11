@@ -3,36 +3,36 @@ import KNOWN_INPUTS from './StandardTypes';
 import { ComponentType } from '../stores/jsonStore';
 import Repeater from './Repeater';
 
+import { CreateCustomInput } from './CustomTypes/CustomComponent';
+
 interface RendererProps {
   content: ComponentType;
+  currentNode?: string[];
 }
 
-const Renderer: FunctionComponent<RendererProps> = ({ content }) => {
+const Renderer: FunctionComponent<RendererProps> = ({ content, currentNode = [] }) => {
   return (
-    <div>
+    <div className="renderer">
       {Object.keys(content).map((entry: string) => {
         const value = content[entry];
         const type = typeof value;
+        const nextNode = [...currentNode, entry];
         if (Array.isArray(value)) {
-          return <Repeater name={entry} content={value as [ComponentType]} />;
+          console.log(' ARRAY ', entry, value);
+          return (
+            <Repeater name={entry} content={value as [ComponentType]} currentNode={nextNode} />
+          );
         } else {
           if (type === 'object') {
-            if (Object.keys(KNOWN_INPUTS).indexOf(value.__type) !== -1) {
-              return (
-                <label key={entry} className={value.__type}>
-                  <span>{entry}</span>
-                  {KNOWN_INPUTS[value.__type](value)}
-                </label>
-              );
-            }
+            return (
+              <div key={entry}>
+                <h3>{entry}</h3>
+                <Renderer content={value} currentNode={nextNode} />
+              </div>
+            );
           } else {
             if (Object.keys(KNOWN_INPUTS).indexOf(type) !== -1) {
-              return (
-                <label key={entry} className={type}>
-                  <span>{entry}</span>
-                  {KNOWN_INPUTS[type](value)}
-                </label>
-              );
+              return <div key={entry}>{KNOWN_INPUTS[type](entry, value, nextNode)}</div>;
             }
           }
         }

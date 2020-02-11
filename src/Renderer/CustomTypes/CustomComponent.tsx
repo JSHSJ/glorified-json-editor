@@ -1,20 +1,30 @@
 import React, { FunctionComponent } from 'react';
+import Renderer from '../Renderer';
+import { ComponentType } from '../../stores/jsonStore';
 
-type CustomInputProps = {
+export interface CustomInputProps {
   __type: string;
-  content: {
-    headline: 'string';
-    name: 'string';
-    amount: 'number';
-  };
+  content: ComponentType;
+}
+
+export type CustomInputType = FunctionComponent<CustomInputProps>;
+
+export interface CustomInputFunction {
+  (props: CustomInputProps): CustomInputType;
+}
+
+export const CustomInput: CustomInputType = ({ __type, content }) => {
+  return (
+    <div className="__type">
+      {Object.keys(content).map(component => (
+        <p>{component}</p>
+      ))}
+    </div>
+  );
 };
 
-const NumberInput: FunctionComponent<CustomInputProps> = ({ __type, content }) => {
-  return <input type="number" defaultValue={value} />;
+export const CreateCustomInput = (props: CustomInputProps) => {
+  return <CustomInput __type={props.__type} content={props.content} />;
 };
 
-const CreateNumberInput = (props: number) => {
-  return <NumberInput value={props} />;
-};
-
-export default CreateNumberInput;
+export default CreateCustomInput;

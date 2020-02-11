@@ -1,15 +1,19 @@
 import React, { FunctionComponent } from 'react';
 
 export interface NumberInputProps {
+  name: string;
   value: number;
+  currentNode: string[];
 }
 
-const NumberInput: FunctionComponent<NumberInputProps> = ({ value }) => {
-  return <input type="number" defaultValue={value} />;
+const NumberInput: FunctionComponent<NumberInputProps> = ({ name, value, currentNode }) => {
+  const flattenedNode = currentNode.join('_');
+  return (
+    <label key={flattenedNode} className="label-number">
+      <span>{flattenedNode}</span>
+      <input type="number" defaultValue={value} />
+    </label>
+  );
 };
 
-const CreateNumberInput = (props: number) => {
-  return <NumberInput value={props} />;
-};
-
-export default CreateNumberInput;
+export default NumberInput;

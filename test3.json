@@ -1,8 +1,9 @@
 {
   "name": "test 2",
   "slug": "test-2",
+  "numbertest": 2,
   "test": {
-    "__type": "tet",
+    "__type": "test",
     "headline": "custom",
     "name": "string",
     "amount": "number"

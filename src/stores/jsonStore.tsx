@@ -22,7 +22,6 @@ interface ContextProps {
 }
 
 function reducer(state: StateType, action: Action): StateType {
-  console.log(action);
   switch (action.type) {
     case 'update':
       return { ...state, ...action.payload };
